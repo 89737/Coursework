@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         openDatabase("Login.db"); // the file i want to open
         try{
-            PreparedStatement ps = db.prepareStatement("SELECT UserID, UserName, Password FROM Users");
+            PreparedStatement ps = db.prepareStatement("SELECT UserID, UserName, Password FROM User");
 
             ResultSet results = ps.executeQuery();
             while(results.next()) {
