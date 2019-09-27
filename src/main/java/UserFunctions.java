@@ -8,7 +8,7 @@ public class UserFunctions {
     public static void insertUser(String Username, String Password, String Email) {
         try {
             //the 2 lines create a user with the properties for that table and then updates the table to insert them in
-            PreparedStatement ps = Main.db.prepareStatement("INSERT INTO User (username, password, email) VALUES(Legend27,WhoAm1?, )");
+            PreparedStatement ps = Main.db.prepareStatement("INSERT INTO User (username, password, email) VALUES(Legend27,WhoAm1?, legend27@gmail.com )");
             ps.executeUpdate(); //executes the query to update the table
             System.out.println("Record added to Users table"); //confirmation message that the user table has been updated
         } catch (Exception exception) {
@@ -51,7 +51,7 @@ public class UserFunctions {
                 int UserID = results.getInt(1);
                 String username = results.getString(2);
                 String Password = results.getString(3);
-
+                String email = results.getString(4);
                 System.out.println(UserID + " " + username + " " + Password + " " ); //displays the list of users
 
             }
