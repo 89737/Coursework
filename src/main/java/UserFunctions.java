@@ -54,14 +54,14 @@ public class UserFunctions {
             }
             System.out.println("thing/update UserID=" + UserID);
 
-            // the SQL statement that sets a change to a ID where there is a matching piece of existing data
+            // the SQL statement that sets a change to an ID where there is a matching piece of existing data
             PreparedStatement ps = Main.db.prepareStatement("UPDATE User SET Username = ?, Password = ?, Email = ? WHERE UserID = ?");
            ps.setString(1,Username);
            ps.setString(2,Password);
            ps.setString(3,Email);
             ps.executeUpdate(); //executes the query to be carried out
 
-            return "{\"status\": \"OK\"}"; //returns a conformation message that the update was a success
+            return "{\"status\": \"OK\"}"; //returns a confirmation message that the update was a success
 
         } catch (Exception exception) { // catches any errors coming through and displays an error to display to the user
             System.out.println(exception.getMessage());
