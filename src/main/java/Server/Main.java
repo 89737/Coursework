@@ -12,7 +12,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class Main {
+    public class Main {
     public static Connection db = null; // acts as a global variable
 
     //PHASE 1 P.S.V.M.
@@ -24,7 +24,7 @@ public class Main {
     public static void main(String[] args) {
 
         openDatabase("Login.db"); //used to open the database I want the resources from
-
+        closeDatabase();
         ResourceConfig config = new ResourceConfig(); //creates a new resource config
         config.packages("Controllers"); //accesses the controller package with the CRUD methods
         config.register(MultiPartFeature.class);
@@ -33,7 +33,6 @@ public class Main {
         Server server = new Server(8081); //this is the  port I will be using for testing
         ServletContextHandler context = new ServletContextHandler(server, "/");
         context.addServlet(servlet, "/*");
-
         try { // a try method to run the server without it crashing if an error occurs
             server.start(); //used to start the server
             System.out.println("Server successfully started."); //message if the server has successfully connected
@@ -41,6 +40,7 @@ public class Main {
         } catch (Exception e) { //used to catch any errors
             e.printStackTrace(); //if any errors have been found the program will trace the routine to find it
         }
+
     }
 
 
