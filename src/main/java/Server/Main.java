@@ -9,10 +9,8 @@ import org.glassfish.jersey.servlet.ServletContainer;
 import org.sqlite.SQLiteConfig;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
-    public class Main {
+public class Main {
     public static Connection db = null; // acts as a global variable
 
     //PHASE 1 P.S.V.M.
@@ -24,7 +22,7 @@ import java.sql.ResultSet;
     public static void main(String[] args) {
 
         openDatabase("Login.db"); //used to open the database I want the resources from
-        closeDatabase();
+        //closeDatabase();
         ResourceConfig config = new ResourceConfig(); //creates a new resource config
         config.packages("Controllers"); //accesses the controller package with the CRUD methods
         config.register(MultiPartFeature.class);

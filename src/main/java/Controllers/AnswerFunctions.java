@@ -18,21 +18,20 @@ public class AnswerFunctions {
         @Consumes(MediaType.MULTIPART_FORM_DATA)
         @Produces(MediaType.APPLICATION_JSON)
         //FormDataParam gets the data from a web page to use in the function
-        public String insertAnswer(@FormDataParam("AnswerID") Integer AnswerID, @FormDataParam("AnswerName") String AnswerName, @FormDataParam("QuestionID") Integer QuestionID) {
+        public String insertAnswer( @FormDataParam("AnswerName") String AnswerName, @FormDataParam("QuestionID") Integer QuestionID) {
             try {
                 //an if statement to check that any of the fields are null and if so then an error would be displayed to fill in the field
-                if (AnswerID == null || AnswerName == null || QuestionID == null ) {
+                if (AnswerName == null || QuestionID == null ) {
                     throw new Exception("One or more form data parameters are missing in the HTTP request.");
                 }
-                System.out.println("Answers/new AnswerID=" + AnswerID); //this displays the new UserId being created
+              //  System.out.println("Answers/new AnswerID=" + AnswerID); //this displays the new UserId being created
 
 
-                //the line creates a user with the properties for that table and then updates the table to insert them in
-                PreparedStatement ps = Main.db.prepareStatement("INSERT INTO Answers (username, password, email) VALUES(?,?,?,?)");
+                //the line creates a user with the properties for that table and then updates the table to  them in
+                PreparedStatement ps = Main.db.prepareStatement("INSERT INTO Answers (AnswerName, QuestionID) VALUES(?,?)");
                 //these lines are for each of the attributes that need to be set a prepared statement data type
-                ps.setInt(1, AnswerID);
                 ps.setString(2, AnswerName);
-                ps.setInt(3, QuestionID);
+                ps.setInt(1, QuestionID);
                 ps.executeUpdate(); //executes the query to update the table
                 return "{\"status\": \"OK\"}"; //confirmation message for when the new user has been inserted
 
@@ -60,6 +59,7 @@ public class AnswerFunctions {
                 PreparedStatement ps = Main.db.prepareStatement("UPDATE Answers SET AnswerName = ?, QuestionID = ? WHERE AnswerID = ?");
                 ps.setString(1,AnswerName);
                 ps.setInt(2,QuestionID);
+                ps.setInt(3,AnswerID);
                 ps.executeUpdate(); //executes the query to be carried out
 
                 return "{\"status\": \"OK\"}"; //returns a confirmation message that the update was a success

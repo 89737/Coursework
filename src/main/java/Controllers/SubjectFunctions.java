@@ -17,22 +17,21 @@ public class SubjectFunctions {
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.APPLICATION_JSON)
     //FormDataParam gets the data from a web page to use in the function
-    public String insertSubject(@FormDataParam("SubjectID") Integer SubjectID, @FormDataParam("SubjectName") String SubjectName, @FormDataParam("ClassName") String ClassName, @FormDataParam("UserID") Integer UserID) {
+    public String insertSubject(@FormDataParam("SubjectName") String SubjectName, @FormDataParam("ClassName") String ClassName, @FormDataParam("UserID") Integer UserID) {
         try {
             //an if statement to check that any of the fields are null and if so then an error would be displayed to fill in the field
-            if (SubjectID == null || SubjectName == null || ClassName == null || UserID == null) {
+            if( SubjectName == null || ClassName == null || UserID == null) {
                 throw new Exception("One or more form data parameters are missing in the HTTP request.");
             }
-            System.out.println("Subjects/new SubjectID=" + SubjectID); //this displays the new SubjectID being created
+          //  System.out.println("Subjects/new SubjectID=" + SubjectID); //this displays the new SubjectID being created
 
 
             //the line creates a user with the properties for that table and then updates the table to insert them in
-            PreparedStatement ps = Main.db.prepareStatement("INSERT INTO Subjects (SubjectName, ClassName, UserID) VALUES(?,?,?,?)");
-            //these lines are for each of the attributes that need to be set a prepared statement data type
-            ps.setInt(1, SubjectID);
-            ps.setString(2, SubjectName);
-            ps.setString(3, ClassName);
-            ps.setInt(4, UserID);
+            PreparedStatement ps = Main.db.prepareStatement("INSERT INTO Subjects (SubjectName, ClassName, UserID) VALUES(?,?,?)");
+            //these lines are for each of the attributes that need to be set a prepared statement data type;
+            ps.setString(1, SubjectName);
+            ps.setString(2, ClassName);
+            ps.setInt(3, UserID);
             ps.executeUpdate(); //executes the query to update the table
             return "{\"status\": \"OK\"}"; //confirmation message for when the new user has been inserted
 
@@ -60,6 +59,7 @@ public class SubjectFunctions {
             ps.setString(1, SubjectName);
             ps.setString(2, ClassName);
             ps.setInt(3, UserID);
+            ps.setInt(4,SubjectID);
             ps.executeUpdate(); //executes the query to be carried out
 
             return "{\"status\": \"OK\"}"; //returns a confirmation message that the update was a success
@@ -140,7 +140,7 @@ public class SubjectFunctions {
         JSONObject item = new JSONObject();   //creates a JSON array for the item
         // a try catch statement for the listing of the item that wants to be listed
         try {
-            PreparedStatement ps = Main.db.prepareStatement("SELECT SubjectName, ClassName FROM Subject WHERE SubjectID = ?");
+            PreparedStatement ps = Main.db.prepareStatement("SELECT SubjectName, ClassName FROM Subjects WHERE SubjectID = ?");
             ps.setInt(1, SubjectID);
             ResultSet results = ps.executeQuery();
             // if the result has an item then it will list all the values for it

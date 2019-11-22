@@ -17,22 +17,22 @@ public class UserFunctions {
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.APPLICATION_JSON)
     //FormDataParam gets the data from a web page to use in the function
-    public String insertUser(@FormDataParam("UserID") Integer UserID, @FormDataParam("Username") String Username, @FormDataParam("Password") String Password, @FormDataParam("Email") String Email) {
+    public String insertUser(@FormDataParam("Username") String Username, @FormDataParam("Password") String Password, @FormDataParam("Email") String Email) {
         try {
            //an if statement to check that any of the fields are null and if so then an error would be displayed to fill in the field
-            if (UserID == null || Username == null || Password == null || Email == null) {
+            if (Username == null || Password == null || Email == null) {
                 throw new Exception("One or more form data parameters are missing in the HTTP request.");
             }
-            System.out.println("Users/new UserID=" + UserID); //this displays the new UserId being created
+            //System.out.println("Users/new UserID=" + UserID); //this displays the new UserId being created
 
 
             //the line creates a user with the properties for that table and then updates the table to insert them in
-            PreparedStatement ps = Main.db.prepareStatement("INSERT INTO User (username, password, email) VALUES(?,?,?,?)");
+            PreparedStatement ps = Main.db.prepareStatement("INSERT INTO Users (Username, Password, Email) VALUES(?,?,?)");
             //these lines are for each of the attributes that need to be set a prepared statement data type
-            ps.setInt(1, UserID);
-            ps.setString(2, Username);
-            ps.setString(3, Password);
-            ps.setString(4,Email);
+
+            ps.setString(1, Username);
+            ps.setString(2, Password);
+            ps.setString(3,Email);
             ps.executeUpdate(); //executes the query to update the table
             return "{\"status\": \"OK\"}"; //confirmation message for when the new user has been inserted
 
@@ -57,10 +57,11 @@ public class UserFunctions {
             System.out.println("Users/update UserID=" + UserID);
 
             // the SQL statement that sets a change to an ID where there is a matching piece of existing data
-            PreparedStatement ps = Main.db.prepareStatement("UPDATE User SET Username = ?, Password = ?, Email = ? WHERE UserID = ?");
+            PreparedStatement ps = Main.db.prepareStatement("UPDATE Users SET Username = ?, Password = ?, Email = ? WHERE UserID = ?");
            ps.setString(1,Username);
            ps.setString(2,Password);
            ps.setString(3,Email);
+           ps.setInt(4, UserID);
             ps.executeUpdate(); //executes the query to be carried out
 
             return "{\"status\": \"OK\"}"; //returns a confirmation message that the update was a success
@@ -88,7 +89,7 @@ public class UserFunctions {
             System.out.println("Users/delete UserID=" + UserID); // this displays the userID that has been deleted from the table
 
             // SQL statement that removes a specific part from the database where the requirement is met
-            PreparedStatement ps = Main.db.prepareStatement("DELETE FROM User WHERE UserID = ?");
+            PreparedStatement ps = Main.db.prepareStatement("DELETE FROM Users WHERE UserID = ?");
             ps.setInt(1, UserID);
             ps.execute(); //this executes the query to be run
 
@@ -108,7 +109,7 @@ public class UserFunctions {
         System.out.println("Users/list");
         JSONArray list = new JSONArray();  //creates an array for the JSON objects to be used
         try { // try catch method to catch any errors to stop the program breaking
-            PreparedStatement ps = Main.db.prepareStatement("SELECT UserID, UserName, Password, Email FROM User");
+            PreparedStatement ps = Main.db.prepareStatement("SELECT UserID, UserName, Password, Email FROM Users");
             ResultSet results = ps.executeQuery();
 
             //while it is not the end of the database it will display each user with their attributes

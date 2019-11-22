@@ -17,25 +17,24 @@ public class TestFunctions {
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.APPLICATION_JSON)
     //FormDataParam gets the data from a web page to use in the function
-    public String insertTest(@FormDataParam("TestID") Integer TestID, @FormDataParam("TestName") String TestName, @FormDataParam("TestDate") String TestDate, @FormDataParam("SaveTest") Boolean SaveTest, @FormDataParam("TestScore") Integer TestScore, @FormDataParam("TestMax") Integer TestMax, @FormDataParam("SubjectID") Integer SubjectID) {
+    public String insertTest(@FormDataParam("TestName") String TestName, @FormDataParam("TestDate") String TestDate, @FormDataParam("SaveTest") Boolean SaveTest, @FormDataParam("TestScore") Integer TestScore, @FormDataParam("TestMax") Integer TestMax, @FormDataParam("SubjectID") Integer SubjectID) {
         try {
             //an if statement to check that any of the fields are null and if so then an error would be displayed to fill in the field
-            if (TestID == null || TestName == null || TestDate == null || SaveTest == null || TestScore == null || TestMax ==null) {
+            if ( TestName == null || TestDate == null || SaveTest == null || TestScore == null || TestMax ==null) {
                 throw new Exception("One or more form data parameters are missing in the HTTP request.");
             }
-            System.out.println("Tests/new TestID=" + TestID); //this displays the new TestID being created
+            //System.out.println("Tests/new TestID=" + TestID); //this displays the new TestID being created
 
 
             //the line creates a test with the properties for that table and then updates the table to insert them in
-            PreparedStatement ps = Main.db.prepareStatement("INSERT INTO Test (TestName, TestDate, SaveTest, TestScore, TestMax, SubjectID) VALUES(?,?,?,?,?,?,?");
+            PreparedStatement ps = Main.db.prepareStatement("INSERT INTO Tests (TestName, TestDate, SaveTest, TestScore, TestMax, SubjectID) VALUES(?,?,?,?,?,?)");
             //these lines are for each of the attributes that need to be set a prepared statement data type
-            ps.setInt(1, TestID);
-            ps.setString(2, TestName);
-            ps.setString(3, TestDate);
-            ps.setBoolean(4,SaveTest);
-            ps.setInt(5,TestScore);
-            ps.setInt(6,TestMax);
-            ps.setInt(7,SubjectID);
+            ps.setString(1, TestName);
+            ps.setString(2, TestDate);
+            ps.setBoolean(3,SaveTest);
+            ps.setInt(4,TestScore);
+            ps.setInt(5,TestMax);
+            ps.setInt(6,SubjectID);
             ps.executeUpdate(); //executes the query to update the table
             return "{\"status\": \"OK\"}"; //confirmation message for when the new test has been inserted
 
@@ -60,13 +59,14 @@ public class TestFunctions {
             System.out.println("Tests/update TestID=" + TestID);
 
             // the SQL statement that sets a change to an ID where there is a matching piece of existing data
-            PreparedStatement ps = Main.db.prepareStatement("UPDATE Test SET TestName = ?, TestDate = ?, SaveTest = ? , TestScore = ?, TestMax = ?, SubjectID = ? WHERE TestID = ?");
+            PreparedStatement ps = Main.db.prepareStatement("UPDATE Tests SET TestName = ?, TestDate = ?, SaveTest = ? , TestScore = ?, TestMax = ?, SubjectID = ? WHERE TestID = ?");
             ps.setString(1,TestName);
             ps.setString(2,TestDate);
             ps.setBoolean(3,SaveTest);
             ps.setInt(4,TestScore);
             ps.setInt(5,TestMax);
             ps.setInt(6,SubjectID);
+            ps.setInt(7,TestID);
             ps.executeUpdate(); //executes the query to be carried out
 
             return "{\"status\": \"OK\"}"; //returns a confirmation message that the update was a success
@@ -94,7 +94,7 @@ public class TestFunctions {
             System.out.println("Tests/delete TestID=" + TestID); // this displays the TestID that has been deleted from the table
 
             // SQL statement that removes a specific part from the database where the requirement is met
-            PreparedStatement ps = Main.db.prepareStatement("DELETE FROM Test WHERE TestID = ?");
+            PreparedStatement ps = Main.db.prepareStatement("DELETE FROM Tests WHERE TestID = ?");
             ps.setInt(1, TestID);
             ps.execute(); //this executes the query to be run
 
@@ -114,7 +114,7 @@ public class TestFunctions {
         System.out.println("Tests/list");
         JSONArray list = new JSONArray();  //creates an array for the JSON objects to be used
         try { // try catch method to catch any errors to stop the program breaking
-            PreparedStatement ps = Main.db.prepareStatement("SELECT TestID, TestName, TestDate, SaveTest, TestScore, TestMax, SubjectID FROM Test");
+            PreparedStatement ps = Main.db.prepareStatement("SELECT TestID, TestName, TestDate, SaveTest, TestScore, TestMax, SubjectID FROM Tests");
             ResultSet results = ps.executeQuery();
 
             //while it is not the end of the database it will display each Test with their attributes
