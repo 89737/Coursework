@@ -112,7 +112,7 @@ public class SubjectFunctions {
 
             //while it is not the end of the database it will display each user with their attributes
 
-            while (results.next()) ; //while loop allows the loop to run until the end of the tables data
+            while (results.next())  //while loop allows the loop to run until the end of the tables data
             {
                 // each item is put into the database as a JSON object that item has been created as
                 JSONObject item = new JSONObject(); //this will create an object to go into the JSON array

@@ -51,7 +51,7 @@ public class Main {
             SQLiteConfig config = new SQLiteConfig();
             config.enforceForeignKeys(true);
             // this opens the database file
-            db = DriverManager.getConnection("jdbc:sqlite:resources/login/" + dbFile, config.toProperties());
+            db = DriverManager.getConnection("jdbc:sqlite:resources/" + dbFile, config.toProperties());
             System.out.println("Database connection successfully established");
             // this catches any errors that have occurred
         } catch (Exception exception){
