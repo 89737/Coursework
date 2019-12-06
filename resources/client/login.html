@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>please enter your login details</title>
+    <title>Demo page</title>
+    <link rel="stylesheet" type="text/css" href="/client/css/styles.css">
+    <script src="/client/js/cookie.js"></script>
+    <script src="/client/js/login.js"></script>
 </head>
-<body>
-
+<body onload="pageLoad()">
+<div id="content">
+    <h1>Please enter log-in details</h1>
+    <hr />
+    <form id="loginForm">
+        <div class="loginDiv">
+            <label for="Username">Username: </label>
+            <input type="text" name="Username" id="Username">
+        </div>
+        <div class="loginDiv">
+            <label for="Password">Password: </label>
+            <input type="Password" name="Password" id="Password">
+        </div>
+        <div class="loginDiv">
+            <input type="submit" value="Login" id="loginButton">
+        </div>
+    </form>
+</div>
 </body>
 </html>
