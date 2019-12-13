@@ -1,17 +1,60 @@
 body {
-    background-color: navy; /* this sets the background colour to navy  */
-    margin: 0;  /* this sets a margin to 0px so there will be no border  */
-    font-family: 'Arial', serif;  /* this sets the font style to arial and serif */
+    background-color: mediumpurple; /* this sets the background colour to navy  */
+    margin: 10px;  /* this sets a margin to 0px so there will be no border  */
+    font-family: 'Arial', sans-serif;  /* this sets the font style to arial and serif */
 }
 
 h1 {
-    margin-top:0; /* this sets the top margin padding to 0px */
+    margin-top:-15.75px; /* this sets the top margin padding to 0px */
+    background-color:mediumpurple;
+    text-align: left;
 }
 
 #content { /* this gives the id content from my javascript different attributes */
     background-color: white; /* this sets the background colour to white for the content id  */
-    width: 1000px; /* this sets the width to 1000px wide  */
-    margin: 0 auto; /* this gives the margin an auto margin  */
-    min-height: 600px;  /* this sets the height to 600px */
-    padding: 32px;  /* this gives a padding to the content id of 32 pixels  */
+    width: 1500px; /* this sets the width to 1000px wide  */
+    margin-left: 100px; /* this gives the margin an auto margin  */
+    min-height: 800px;  /* this sets the height to 600px */
+    padding: 0px;  /* this gives a padding to the content id of 32 pixels  */
+}
+#button {
+    width:140px;
+    font-size: 14px;
+    border: black;
+    height: 20px;
+
+}
+#Dropdown{
+    position: absolute;
+    width:100px;
+    height:20px;
+    right:0;
+    margin-right: 350px;
+
+}
+.loginDiv {
+    font-size: 14pt;
+    margin-top: 40px;
+    margin-left: 20px;
+}
+
+#username, #password {
+    margin-left: 20px;
+    font-size: 14pt;
+}
+
+#loginButton {
+    width: 200px;
+    background-color: cornflowerblue;
+}
+
+#loginButton:hover {
+    background-color: dodgerblue;
+}
+.editButton, .deleteButton, #saveButton, #cancelButton, #loginButton {
+    color: black;
+    font-size: 14px;
+    border: none;
+    padding: 8px;
+    border-radius: 8px;
 }

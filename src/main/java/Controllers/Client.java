@@ -18,7 +18,7 @@ public class Client {
 
     @GET
     @Path("img/{path}")
-    @Produces({"image/jpg,image/png"})
+    @Produces({"image/jpg,image/jpg"})
     public byte[] getImageFile(@PathParam("path") String path) {
         return getFile("client/img/" + path);
     }
@@ -47,7 +47,7 @@ public class Client {
     @Path("logo.jpg")
     @Produces({"image/x-icon"})
     public byte[] getFavicon() {
-        return getFile("client/logo.jpg");
+        return getFile("client/img/logo.jpg");
     }
 
     private static byte[] getFile(String filename) {

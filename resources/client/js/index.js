@@ -4,7 +4,7 @@ function pageLoad() {
 
     let myHTML = '<div style="text-align:center;">'   // aligns the text for my main heading
         + '<h1>Flashcard Revision!</h1>' // this is the main title for my index page and will show the writing within the h1 tags
-        + '<img src="/client/img/logo.jpg" width="300px"  alt="Logo"/>' // this loads in the image i'll be using and has the file path with the width being set to 300px wide
+        + '<img src="/client/img/logo.jpg" align="left" width="300px" height="100" alt="Logo"/>' // this loads in the image i'll be using and has the file path with the width being set to 300px wide
         + '<div style="font-style: italic;">' //this is for the font style that will be being set for the heading
         + 'Generated at ' + now.toLocaleTimeString() //this displays the time of which the page has been loaded
         + '</div>'
@@ -12,5 +12,9 @@ function pageLoad() {
 
     document.getElementById("testDiv").innerHTML = myHTML; //sets the testDiv to the myHTML variable
 
+    alert("yeet")
+
 }
+
+
 
