@@ -12,22 +12,24 @@ h1 {
 
 #content { /* this gives the id content from my javascript different attributes */
     background-color: white; /* this sets the background colour to white for the content id  */
-    width: 1500px; /* this sets the width to 1000px wide  */
-    margin-left: 100px; /* this gives the margin an auto margin  */
-    min-height: 800px;  /* this sets the height to 600px */
+    width: 1875px; /* this sets the width to 1000px wide  */
+    margin-left: 10px; /* this gives the margin an auto margin  */
+    margin-right: 10px;
+    min-height: 900px;  /* this sets the height to 600px */
     padding: 0px;  /* this gives a padding to the content id of 32 pixels  */
 }
 #button {
-    width:140px;
-    font-size: 14px;
+    width:200px;
+    font-size: 20px;
     border: black;
-    height: 20px;
+    height: 30px;
 
 }
 #Dropdown{
     position: absolute;
-    width:100px;
-    height:20px;
+    width:200px;
+    height:40px;
+    font-size: 30px;
     right:0;
     margin-right: 350px;
 

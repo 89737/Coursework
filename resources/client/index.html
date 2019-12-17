@@ -6,18 +6,42 @@
     <link rel="stylesheet" type="text/css" href="/client/css/styles.css">   <!-- this adds the style css sheets i'm using in the html -->
     <script src="/client/js/index.js"></script>
     <link rel="shortcut icon" href="/client/favicon.ico" type="image/x-icon">
+
+    <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
+    <script src="index.js"></script>
 </head>
 
 <body onload="pageLoad()"> <!-- onload the pageload function is run -->
 <div id="content">
     <div id="testDiv"></div>    <!-- this id will be used in the javascript index page -->
-    <button id="button" onclick="pageLoad()">Yeet</button>
+    <button id="button" onclick="RunLoginpage()">Logout</button>
     <select id="Dropdown">
-        <option value="Settings">Settings</option>
+        <option value="Settings">Home</option>
         <option value="Edit">Edit</option>
         <option value="Test">Test</option>
+        <option value="Delete">Delete</option>
+
     </select>
+    <canvas id="chartCanvas" style="width:1000px; height:600px; margin-right: 150%; margin-top:10%"></canvas>
 </div>
+
+
+
 </body>
 
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+
+    var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: [{
+            x: 10,
+            y: 20
+        }, {
+            x: 15,
+            y: 10
+        }],
+
+    });
+</script>
 </html>   <!-- closing tags for teh html --->
