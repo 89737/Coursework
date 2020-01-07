@@ -60,3 +60,18 @@ h1 {
     padding: 8px;
     border-radius: 8px;
 }
+#loggedInDetails {
+    margin: 0;
+    text-align: right;
+    display: inline;
+    float: right
+}
+.deleteButton, #cancelButton {
+    visibility: hidden;
+    background-color: indianred;
+    margin-left: 10px;
+}
+.editButton {
+    visibility: hidden;
+    background-color: silver;
+}

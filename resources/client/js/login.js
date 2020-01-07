@@ -1,36 +1,52 @@
-function Loginpage() {
+/*function pageLoad() {
 
-    let now = new Date();
+    if(window.location.search === '?logout') {
+        document.getElementById('content').innerHTML = '<h1>Logging out, please wait...</h1>';
+        logout();
+    } else {
+        document.getElementById("loginButton").addEventListener("click", login);
+    }
 
-    let myHTML = '<div style="text-align:center;">'   // aligns the text for my main heading
-        + '<h1>Flashcard Revision!</h1>' // this is the main title for my index page and will show the writing within the h1 tags
-        + '<img src="/client/img/logo.jpg" align="left" width="300px" height="100" alt="Logo"/>' // this loads in the image i'll be using and has the file path with the width being set to 300px wide
-        + '<div style="font-style: italic;">' //this is for the font style that will be being set for the heading
-        + 'login at ' + now.toLocaleTimeString() //this displays the time of which the page has been loaded
-        + '</div>'
-        + '</div>';
+}  */
+function login(event) {
 
-    document.getElementById("testDiv").innerHTML = myHTML; //sets the testDiv to the myHTML variable
+    event.preventDefault();
 
+    const form = document.getElementById("loginForm");
+    const formData = new FormData(form);
+
+    fetch("/user/login", {method: 'post', body: formData}
+    ).then(response => response.json()
+    ).then(responseData => {
+
+        if (responseData.hasOwnProperty('error')) {
+            alert(responseData.error);
+        } else {
+            Cookies.set("username", responseData.username);
+            Cookies.set("token", responseData.token);
+
+            window.location.href = '/client/index.html';
+        }
+    });
 }
-/* function logout() {
+function logout() {
 
     fetch("/user/logout", {method: 'post'}
     ).then(response => response.json()
-).then(responseData => {
+    ).then(responseData => {
         if (responseData.hasOwnProperty('error')) {
 
-        alert(responseData.error);
+            alert(responseData.error);
 
-    } else {
+        } else {
 
-        Cookies.remove("username");
-        Cookies.remove("token");
+            Cookies.remove("username");
+            Cookies.remove("token");
 
-        window.location.href = '/client/index.html';
+            window.location.href = '/client/index.html';
 
-    }
-});
+        }
+    });
 
 }
-*/
+

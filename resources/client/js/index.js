@@ -12,54 +12,45 @@ function pageLoad() {
 
     document.getElementById("testDiv").innerHTML = myHTML; //sets the testDiv to the myHTML variable
 
+    let l = [];
+    let d = [];
 
+    fetch('/Tests/get/1', {method: 'get'}
+    ).then(response => response.json()
+    ).then(testScores => {
 
-    const canvas = document.getElementById('chartCanvas');
-    const context = canvas.getContext('2d');
+        for (let score of testScores) {
+            l.push(score.TestName);
+            d.push(score.TestScore);
+        }
 
-    let myChart = new Chart(context, {
-        type: 'line',   // change this to 'pie' if wanted
-        data: {
-            labels: [
-                'Test 1',
-                'Test 2',
-                'Test 3',
-                'Test 4',
-                'Test 5',
-                'Test 6'
-            ],
-            datasets: [{
-                label: 'Test results',
-                data: [
-                    12,
-                    19,
-                    3,
-                    5,
-                    2,
-                    3
-                ],
-                backgroundColor: [
-                    'red',
-                    'blue',
-                    'yellow',
-                    'green',
-                    'purple',
-                    'orange'
-                ]
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
+        const canvas = document.getElementById('chartCanvas');
+        const context = canvas.getContext('2d');
+
+        let myChart = new Chart(context, {
+            type: 'line',   // change this to 'pie' if wanted
+
+            data: {
+                labels: l,
+                datasets: [{
+                    label: 'Test results',
+                    data: d,
                 }]
             },
-            responsive: false
-        }
-    });
 
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                responsive: false
+            }
+        });
+
+    });
 
 }
 
@@ -70,4 +61,42 @@ function RunLoginpage() {
     window.location.href = "/client/login.html";
 }
 
+function checkLogin() {
+
+    let username = Cookies.get("username");
+
+    let logInHTML = '';
+
+    if (username === undefined) {
+
+        let editButtons = document.getElementsByClassName("editButton");
+        for (let button of editButtons) {
+            button.style.visibility = "hidden";
+        }
+
+        let deleteButtons = document.getElementsByClassName("deleteButton");
+        for (let button of deleteButtons) {
+            button.style.visibility = "hidden";
+        }
+
+        logInHTML = "Not logged in. <a href='/client/login.html'>Log in</a>";
+    } else {
+
+        let editButtons = document.getElementsByClassName("editButton");
+        for (let button of editButtons) {
+            button.style.visibility = "visible";
+        }
+
+        let deleteButtons = document.getElementsByClassName("deleteButton");
+        for (let button of deleteButtons) {
+            button.style.visibility = "visible";
+        }
+
+        logInHTML = "Logged in as " + username + ". <a href='/client/login.html?logout'>Log out</a>";
+
+    }
+
+    document.getElementById("loggedInDetails").innerHTML = logInHTML;
+
+}
 

@@ -141,30 +141,28 @@ public class TestFunctions {
 
     }
     @GET
-    @Path("get/{TestID}")   //gets the item based off the TestID given
+    @Path("get/{UserID}")   //gets the item based off the TestID given
     @Produces(MediaType.APPLICATION_JSON)     //runs as a JSON
-    public String getTest(@PathParam("TestID") Integer TestID) throws Exception {
-        if (TestID == null) {     //checks to make sure the TestID isn't null and if it is catches an exception to avoid breaking
+    public String getTest(@PathParam("UserID") Integer UserID) throws Exception {
+        if (UserID == null) {     //checks to make sure the TestID isn't null and if it is catches an exception to avoid breaking
             throw new Exception("Tests's 'TestID' is missing in the HTTP request's URL.");
         }
-        System.out.println("Tests/get/" + TestID);   //prints the TestID and the path it followed to find it
-        JSONObject item = new JSONObject();   //creates a JSON array for the item
+        System.out.println("Tests/get/" + UserID);   //prints the TestID and the path it followed to find it
+
+        JSONArray o = new JSONArray();//creates a JSON array for the item
         // a try catch statement for the listing of the item that wants to be listed
         try {
-            PreparedStatement ps = Main.db.prepareStatement("SELECT TestName, TestDate, SaveTest, TestScore, TestMax, SubjectID FROM Tests WHERE TestID = ?");
-            ps.setInt(1, TestID);
+            PreparedStatement ps = Main.db.prepareStatement("SELECT TestName, TestScore FROM Tests WHERE UserID = ?");
+            ps.setInt(1, UserID);
             ResultSet results = ps.executeQuery();
             // if the result has an item then it will list all the values for it
-            if (results.next()) {
-                item.put("TestID", TestID);
+            while (results.next()) {
+                JSONObject item = new JSONObject();
                 item.put("TestName", results.getString(1));
-                item.put("TestDate", results.getString(2));
-                item.put("SaveTest", results.getBoolean(3));
-                item.put("TestScore", results.getInt(4));
-                item.put("TestMax", results.getInt(4));
-                item.put("SubjectID", results.getInt(5));
+                item.put("TestScore", results.getInt(2));
+                o.add(item);
             }
-            return item.toString();     //returns the item given for the TestID as a string
+            return o.toString();     //returns the item given for the TestID as a string
             //catches any errors when running the list
         } catch (Exception exception) {
             System.out.println("Database error: " + exception.getMessage());
