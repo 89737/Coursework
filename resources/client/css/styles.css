@@ -1,12 +1,11 @@
 body {
-    background-color: mediumpurple; /* this sets the background colour to navy  */
+    background-color: white; /* this sets the background colour to navy  */
     margin: 10px;  /* this sets a margin to 0px so there will be no border  */
     font-family: 'Arial', sans-serif;  /* this sets the font style to arial and serif */
 }
 
 h1 {
     margin-top:-15.75px; /* this sets the top margin padding to 0px */
-    background-color:mediumpurple;
     text-align: left;
 }
 
@@ -15,7 +14,7 @@ h1 {
     width: 1875px; /* this sets the width to 1000px wide  */
     margin-left: 10px; /* this gives the margin an auto margin  */
     margin-right: 10px;
-    min-height: 900px;  /* this sets the height to 600px */
+    min-height: 600px;  /* this sets the height to 600px */
     padding: 0px;  /* this gives a padding to the content id of 32 pixels  */
 }
 #button {
@@ -74,4 +73,33 @@ h1 {
 .editButton {
     visibility: hidden;
     background-color: silver;
+}
+
+header{
+    display:flex;
+    width: 70%;
+    height: 20vh;
+    margin:auto;
+    align-items: center;
+}
+
+
+
+.nav-bar{
+    justify-content: space-around;
+    list-style: none;
+}
+
+.nav-link{
+    display: flex;
+    color: darkblue;
+}
+.nav-link:hover {
+    color: lightgreen;
+}
+.logo-box, .nav-bar{
+    display:flex;
+}
+nav{
+    flex: 2;
 }
