@@ -27,7 +27,7 @@ public class TestFunctions {
 
 
             //the line creates a test with the properties for that table and then updates the table to insert them in
-            PreparedStatement ps = Main.db.prepareStatement("INSERT INTO Tests (TestName, TestDate, SaveTest, TestScore, TestMax, SubjectID) VALUES(?,?,?,?,?,?)");
+            PreparedStatement ps = Main.db.prepareStatement("INSERT INTO Tests (TestName, TestDate,  TestScore, TestMax, SubjectID) VALUES(?,?,?,?,?,?)");
             //these lines are for each of the attributes that need to be set a prepared statement data type
             ps.setString(1, TestName);
             ps.setString(2, TestDate);
@@ -59,14 +59,13 @@ public class TestFunctions {
             System.out.println("Tests/update TestID=" + TestID);
 
             // the SQL statement that sets a change to an ID where there is a matching piece of existing data
-            PreparedStatement ps = Main.db.prepareStatement("UPDATE Tests SET TestName = ?, TestDate = ?, SaveTest = ? , TestScore = ?, TestMax = ?, SubjectID = ? WHERE TestID = ?");
+            PreparedStatement ps = Main.db.prepareStatement("UPDATE Tests SET TestName = ?, TestDate = ? , TestScore = ?, TestMax = ?, SubjectID = ? WHERE TestID = ?");
             ps.setString(1,TestName);
             ps.setString(2,TestDate);
-            ps.setBoolean(3,SaveTest);
-            ps.setInt(4,TestScore);
-            ps.setInt(5,TestMax);
-            ps.setInt(6,SubjectID);
-            ps.setInt(7,TestID);
+            ps.setInt(3,TestScore);
+            ps.setInt(4,TestMax);
+            ps.setInt(5,SubjectID);
+            ps.setInt(6,TestID);
             ps.executeUpdate(); //executes the query to be carried out
 
             return "{\"status\": \"OK\"}"; //returns a confirmation message that the update was a success
@@ -114,7 +113,7 @@ public class TestFunctions {
         System.out.println("Tests/list");
         JSONArray list = new JSONArray();  //creates an array for the JSON objects to be used
         try { // try catch method to catch any errors to stop the program breaking
-            PreparedStatement ps = Main.db.prepareStatement("SELECT TestID, TestName, TestDate, SaveTest, TestScore, TestMax, SubjectID FROM Tests");
+            PreparedStatement ps = Main.db.prepareStatement("SELECT TestID, TestName, TestDate, TestScore, TestMax, SubjectID FROM Tests");
             ResultSet results = ps.executeQuery();
 
             //while it is not the end of the database it will display each Test with their attributes
@@ -126,10 +125,9 @@ public class TestFunctions {
                 item.put("TestID",results.getInt(1));
                 item.put("TestName",results.getString(2));
                 item.put("TestDate",results.getString(3));
-                item.put("SaveTest",results.getBoolean(4));
-                item.put("TestScore",results.getInt(5));
-                item.put("TestMax", results.getInt(6));
-                item.put("SubjecID",results.getInt(7));
+                item.put("TestScore",results.getInt(4));
+                item.put("TestMax", results.getInt(5));
+                item.put("SubjecID",results.getInt(6));
                 list.add(item); // this adds the item for each column's data in the list
             }
             return list.toString(); // this returns the table data as a list for each item
@@ -141,19 +139,22 @@ public class TestFunctions {
 
     }
     @GET
-    @Path("get/{UserID}")   //gets the item based off the TestID given
+    @Path("get")   //gets the item based off the TestID given
     @Produces(MediaType.APPLICATION_JSON)     //runs as a JSON
-    public String getTest(@PathParam("UserID") Integer UserID) throws Exception {
-        if (UserID == null) {     //checks to make sure the TestID isn't null and if it is catches an exception to avoid breaking
+    public String getTest(@CookieParam("token") String token) throws Exception {
+        if (token == null) {     //checks to make sure the TestID isn't null and if it is catches an exception to avoid breaking
             throw new Exception("Tests's 'TestID' is missing in the HTTP request's URL.");
         }
-        System.out.println("Tests/get/" + UserID);   //prints the TestID and the path it followed to find it
+        System.out.println("Tests/get/");   //prints the TestID and the path it followed to find it
 
         JSONArray o = new JSONArray();//creates a JSON array for the item
         // a try catch statement for the listing of the item that wants to be listed
         try {
+            PreparedStatement tk = Main.db.prepareStatement("SELECT UserID from Users where Token=?");
+            tk.setString(1,token);
+            ResultSet tkr = tk.executeQuery();
             PreparedStatement ps = Main.db.prepareStatement("SELECT TestName, TestScore FROM Tests WHERE UserID = ?");
-            ps.setInt(1, UserID);
+            ps.setInt(1, tkr.getInt("UserID"));
             ResultSet results = ps.executeQuery();
             // if the result has an item then it will list all the values for it
             while (results.next()) {

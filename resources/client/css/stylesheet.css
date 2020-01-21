@@ -1,0 +1,113 @@
+
+body {
+    background-color: white; /* this sets the background colour to navy  */
+    margin: 10px;  /* this sets a margin to 0px so there will be no border  */
+    font-family: 'Arial', sans-serif;  /* this sets the font style to arial and serif */
+}
+
+#button {
+    width:200px;
+    font-size: 20px;
+    border: black;
+    height: 30px;
+
+}
+
+.loginDiv {
+    font-size: 14pt;
+    margin-top: 40px;
+    margin-left: 20px;
+}
+
+#username, #password {
+    margin-left: 20px;
+    font-size: 14pt;
+}
+
+#loginButton {
+    width: 200px;
+    background-color: cornflowerblue;
+    border: none;
+    height:40px;
+    color: white;
+    border-radius: 20px;
+    font-size: 18px;
+    outline: none;
+}
+
+#loginButton:hover {
+    background-color: limegreen;
+}
+.editButton, .deleteButton, #saveButton, #cancelButton, #loginButton {
+    color: black;
+    font-size: 14px;
+    border: none;
+    padding: 8px;
+    border-radius: 8px;
+}
+#loggedInDetails {
+    margin: 0;
+    text-align: right;
+    display: inline;
+    float: right
+}
+
+#content { /* this gives the id content from my javascript different attributes */
+    background-color: white; /* this sets the background colour to white for the content id  */
+   width: 1875px; /* this sets the width to 1000px wide  */
+    margin-left: 10px; /* this gives the margin an auto margin  */
+    margin-right: 10px;
+    min-height: 600px;  /* this sets the height to 600px */
+    padding: 0px;  /* this gives a padding to the content id of 32 pixels  */
+    font-weight: bold;
+    margin:0;
+}
+h1{
+    margin:0;
+    padding:0 0 20px;
+    text-align: center;
+    font-size: 22px;
+}
+.LoginButton{
+    border:none;
+    outline:none;
+    height: 40px;
+    background-color: dodgerblue;
+    color: white;
+    font-size:18px;
+    border-radius: 20px;
+
+}
+.LoginButton:hover{
+    cursor:pointer;
+    background-color: limegreen;
+    color:black;
+}
+
+.login-box{
+    margin:0;
+    padding:0;
+    font-weight: bold;
+}
+
+.loginDiv{
+    border:none;
+}
+.login-box input{
+    width:100%;
+    height:20px;
+}
+.login-box{
+    width:320px;
+    height:420px;
+    background: rgba(0,0,0,0.5);
+    color:white;
+    top:50%;
+    left:50%;
+    position:absolute;
+    translate(-50%, -50%);
+    box-sizing: border-box;
+}
+body{
+
+}

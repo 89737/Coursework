@@ -13,7 +13,7 @@ function pageLoad() {
     let l = [];
     let d = [];
 
-    fetch('/Tests/get/1', {method: 'get'}
+    fetch('/Tests/get/', {method: 'get'}
     ).then(response => response.json()
     ).then(testScores => {
 

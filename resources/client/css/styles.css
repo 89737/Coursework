@@ -9,14 +9,7 @@ h1 {
     text-align: left;
 }
 
-#content { /* this gives the id content from my javascript different attributes */
-    background-color: white; /* this sets the background colour to white for the content id  */
-    width: 1875px; /* this sets the width to 1000px wide  */
-    margin-left: 10px; /* this gives the margin an auto margin  */
-    margin-right: 10px;
-    min-height: 600px;  /* this sets the height to 600px */
-    padding: 0px;  /* this gives a padding to the content id of 32 pixels  */
-}
+
 #button {
     width:200px;
     font-size: 20px;
@@ -24,56 +17,7 @@ h1 {
     height: 30px;
 
 }
-#Dropdown{
-    position: absolute;
-    width:200px;
-    height:40px;
-    font-size: 30px;
-    right:0;
-    margin-right: 350px;
 
-}
-.loginDiv {
-    font-size: 14pt;
-    margin-top: 40px;
-    margin-left: 20px;
-}
-
-#username, #password {
-    margin-left: 20px;
-    font-size: 14pt;
-}
-
-#loginButton {
-    width: 200px;
-    background-color: cornflowerblue;
-}
-
-#loginButton:hover {
-    background-color: dodgerblue;
-}
-.editButton, .deleteButton, #saveButton, #cancelButton, #loginButton {
-    color: black;
-    font-size: 14px;
-    border: none;
-    padding: 8px;
-    border-radius: 8px;
-}
-#loggedInDetails {
-    margin: 0;
-    text-align: right;
-    display: inline;
-    float: right
-}
-.deleteButton, #cancelButton {
-    visibility: hidden;
-    background-color: indianred;
-    margin-left: 10px;
-}
-.editButton {
-    visibility: hidden;
-    background-color: silver;
-}
 
 header{
     display:flex;
