@@ -1,13 +1,4 @@
-/*function pageLoad() {
 
-    if(window.location.search === '?logout') {
-        document.getElementById('content').innerHTML = '<h1>Logging out, please wait...</h1>';
-        logout();
-    } else {
-        document.getElementById("loginButton").addEventListener("click", login);
-    }
-
-}  */
 function RunLoginpage(){
     login();
 }
@@ -37,7 +28,7 @@ function login() {
 }
 function logout() {
 
-    fetch("/user/logout", {method: 'post'}
+    fetch("/User/logout", {method: 'post'}
     ).then(response => response.json()
     ).then(responseData => {
         if (responseData.hasOwnProperty('error')) {
