@@ -12,13 +12,16 @@
 #loginButton {
     width: 200px;
     background-color: cornflowerblue;
+    border:none;
+    outline:none;
+    height:40px;
 }
 
 #loginButton:hover {
     background-color: dodgerblue;
 }
 body {
-    background-color: red;
+    background-color: white;
     margin: 0;
     font-family: 'Arial', serif;
 }
@@ -28,9 +31,10 @@ h1 {
 }
 
 #content {
-    background-color: limegreen;
+    background-color: #f5f5f5 ;
     width: 1000px;
     margin: 0 auto;
     min-height: 600px;
     padding: 32px;
+
 }

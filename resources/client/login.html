@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Demo page</title>
+    <title>Login Page</title>
+    <!-- these add the appropriate script links needed for the page to run effectively -->
     <link rel="stylesheet" type="text/css" href="/client/css/stylesheet.css">
     <script src="/client/js/js.cookie.js"></script>
     <script src="/client/js/login.js"></script>
 </head>
-<body onload="RunLoginpage()">
-<div id="content">
-    <h1>Please log in to continue...</h1>
+
+<body onload="RunLoginpage()"> <!-- this runs the loginpage function (which runs the logn function) when the page is loaded to allow the user to login -->
+<div id="content">  <!-- this is the body ID for allowin gme to style the box for the login -->
+    <h1>Please log in to continue...</h1> <!-- has a heading prompt to login in the user  -->
     <hr />
     <form id="loginForm">
         <div class="loginDiv">
-            <label for="username">Username: </label>
-            <input type="text" name="Username" id="username">
+            <label for="username">Username: </label> <!-- this adds a label to prompt the user to enter a username  -->
+            <input type="text" name="Username" id="username">  <!-- this uses the username value from the API method as the name for the tag -->
         </div>
         <div class="loginDiv">
             <label for="password">Password: </label>
-            <input type="password" name="Password" id="password">
+            <input type="password" name="Password" id="password">  <!-- this uses the password value from the API method as the name for the tag -->
         </div>
         <div class="loginDiv">
-            <input type="submit" value="Login" id="loginButton">
+            <input type="submit" value="Login" id="loginButton"> <!-- this creates a submit button to allow the user to  -->
         </div>
+        <a href="Registry.html"> sign up here</a>
     </form>
 </div>
 </body>

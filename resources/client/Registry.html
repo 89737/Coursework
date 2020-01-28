@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Demo page</title>
+    <link rel="stylesheet" type="text/css" href="/client/css/stylesheet.css">
+    <script src="/client/js/js.cookie.js"></script>
+    <script src="/client/js/login.js"></script>
 </head>
-<body>
-
+<body onload="RunLoginpage()">
+<div id="content">
+    <h1>Please create a Username and password</h1>
+    <hr />
+    <form id="loginForm">
+        <div class="loginDiv">
+            <label for="username">Username: </label>
+            <input type="text" name="Username" id="username">
+        </div>
+        <div class="loginDiv">
+            <label for="password">Password: </label>
+            <input type="password" name="Password" id="password">
+        </div>
+        <div class="loginDiv">
+            <input type="submit" value="Login" id="loginButton">
+        </div>
+    </form>
+</div>
 </body>
 </html>

@@ -28,19 +28,19 @@ function login() {
 }
 function logout() {
 
-    fetch("/User/logout", {method: 'post'}
-    ).then(response => response.json()
+    fetch("/User/logout", {method: 'post'} //this runs the logout API method by fetching it to run
+    ).then(response => response.json() // this looks for a response from the JSON object and if it is not a JSON object returns an error
     ).then(responseData => {
         if (responseData.hasOwnProperty('error')) {
 
             alert(responseData.error);
 
         } else {
-
+            // this removes the usernames and the token from the cookies to not allow them to log back in without going through the login
             Cookies.remove("username");
             Cookies.remove("token");
-
-            window.location.href = '/client/index.html';
+            //this links the user back to the login page once they have logged out
+            window.location.href = '/client/login.html';
 
         }
     });
