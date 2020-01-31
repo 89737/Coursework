@@ -1,25 +1,26 @@
 
 function RunLoginpage(){
-    login();
+    login(); //runs the login function
 }
 
 function login() {
-    const form = document.getElementById("loginForm");
+    const form = document.getElementById("loginForm"); // makes the loginform ID a  constant
     const formData = new FormData(form);
-    form.addEventListener("submit",event=>{
-        event.preventDefault();
+    form.addEventListener("submit",event=>{ //on the login button click
+        event.preventDefault(); //prevents default event from happening when clicked
         let formData = new FormData(form);
-        fetch("/User/login", {method: 'post', body: formData}
-        ).then(response => response.json()
+        fetch("/User/login", {method: 'post', body: formData} //gets the API login method
+        ).then(response => response.json() //looks for a response from a JSON object and iif its's not returns an error
         ).then(responseData => {
 
-            if (responseData.hasOwnProperty('error')) {
+            if (responseData.hasOwnProperty('error')) { // if the response data is located in the object then returns an error
                 alert(responseData.error);
             } else {
+                //if there is ano error it sets the username and token a cookie value
                 Cookies.set("username", responseData.username);
                 Cookies.set("token", responseData.token);
 
-                window.location.href = '/client/index.html';
+                window.location.href = '/client/index.html'; //links to the home page
             }
         });
     });

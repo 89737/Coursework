@@ -41,7 +41,7 @@ public class User {
                     ps2.executeUpdate(); //executes the query with the strings set to the column values
 
                     JSONObject userDetails = new JSONObject();
-                    userDetails.put("username", username);  // this gives the val
+                    userDetails.put("username", username);  // this gives the value of username the specific value to be comapred in the HTML
                     userDetails.put("token", token);
                     return userDetails.toString();
 
@@ -54,7 +54,7 @@ public class User {
                 //otherwise the return is that the user is unknown
                 return "{\"error\": \"Unknown user!\"}";
             }
-
+        //catches any errors to stop the program from crashing and displays an error
         } catch (Exception exception){
             System.out.println("Database error during /user/login: " + exception.getMessage());
             return "{\"error\": \"Server side error!\"}";
